@@ -119,3 +119,24 @@ for fn in FILENAME:
     print('%20s : ' % ('Exists'), os.path.exists(fn))
     print('%20s : ' % ('link Exists'), os.path.lexists(fn))
     print()
+
+print('######### os.walk ###########')
+if not os.path.exists('example'):
+    os.mkdir('example')
+if not os.path.exists('example/one'):
+    os.mkdir('example/one')
+
+with open('example/file.txt', 'wt') as f:
+    f.write('contents')
+
+with open('example/one/two.txt', 'wt') as f:
+    f.write('contents')
+
+for dirpath, dirnames, filenames in os.walk('example'):
+    print(dirpath)
+    for name in filenames:
+        subname = os.path.join(dirpath, name)
+        print(subname)
+    for name in dirnames:
+        subname = os.path.join(dirpath, name)
+        print(subnamesubname+'/')
