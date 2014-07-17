@@ -38,3 +38,17 @@ print('Block at 256')
 input = VerboseStringIO(lorem_ipsum)
 output = StringIO()
 copyfileobj(input, output, 256)
+
+print("########## copy ##############")
+import os.path
+if not os.path.isdir('example'):
+    os.mkdir('example')
+else:
+    print('example already exists!')
+
+print('BEFORE:')
+print(os.listdir('example'))
+copy('shutil_test.py', 'example')
+print('AFTER:')
+print(os.listdir('example'))
+os.unlink('example/shutil_test.py')
