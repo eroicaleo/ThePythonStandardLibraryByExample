@@ -52,3 +52,5 @@ copy('shutil_test.py', 'example')
 print('AFTER:')
 print(os.listdir('example'))
 os.unlink('example/shutil_test.py')
+
+import time
