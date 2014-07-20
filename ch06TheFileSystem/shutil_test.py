@@ -54,3 +54,6 @@ print(os.listdir('example'))
 os.unlink('example/shutil_test.py')
 
 import time
+
+def show_file_info(filename):
+
