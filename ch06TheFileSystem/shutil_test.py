@@ -56,4 +56,15 @@ os.unlink('example/shutil_test.py')
 import time
 
 def show_file_info(filename):
+    stat_info = os.stat(filename)
+    print('\tMode:', stat_info.st_mode)
+    print('\tCreated:', time.ctime(stat_info.st_ctime))
+    print('\tAccessed:', time.ctime(stat_info.st_atime))
+    print('\tModified:', time.ctime(stat_info.st_mtime))
 
+print('SOURCE:')
+show_file_info(__file__)
+print('DEST:')
+copy2(__file__, 'example')
+show_file_info('example/shutil_test.py')
+os.unlink('example/shutil_test.py')
