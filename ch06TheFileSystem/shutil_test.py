@@ -68,3 +68,5 @@ print('DEST:')
 copy2(__file__, 'example')
 show_file_info('example/shutil_test.py')
 os.unlink('example/shutil_test.py')
+
+print("########## copymode ##############")
