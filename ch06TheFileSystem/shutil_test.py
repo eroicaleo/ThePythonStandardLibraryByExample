@@ -70,3 +70,13 @@ show_file_info('example/shutil_test.py')
 os.unlink('example/shutil_test.py')
 
 print("########## copymode ##############")
+with open('file_to_change.txt', 'wt') as f:
+    f.write('content')
+
+os.chmod('file_to_change.txt', int('0644', base=8))
+print('BEFORE:')
+show_file_info('file_to_change.txt')
+print('AFTER:')
+copymode(__file__, 'file_to_change.txt')
+show_file_info('file_to_change.txt')
+os.unlink('file_to_change.txt')
