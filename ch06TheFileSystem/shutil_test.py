@@ -80,3 +80,5 @@ print('AFTER:')
 copymode(__file__, 'file_to_change.txt')
 show_file_info('file_to_change.txt')
 os.unlink('file_to_change.txt')
+
+print("########## copystat ##############")
