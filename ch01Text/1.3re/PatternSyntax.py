@@ -2,6 +2,11 @@
 
 import re
 
+def show_banner(test_type):
+    print('##'+'-'*100)
+    print('##',test_type)
+    print('##'+'-'*100)
+
 def test_patterns(text, patterns=[]):
     for pattern, desc in patterns:
         print('Pattern %r (%s) \n' % (pattern, desc))
@@ -25,9 +30,7 @@ test_patterns('abbaaabbbbaaaaa',
          ('ab{2,3}', "'a' followed by two to three 'b'"),
          ])
 
-print('##'+'-'*100)
-print('##','Non greedy')
-print('##'+'-'*100)
+show_banner('Non Greedy')
 test_patterns('abbaaabbbbaaaaa',
         [('ab*?', "'a' followed by zero or more 'b'"),
          ('ab+?', "'a' followed by one or more 'b'"),
@@ -36,11 +39,23 @@ test_patterns('abbaaabbbbaaaaa',
          ('ab{2,3}?', "'a' followed by two to three 'b'"),
          ])
 
-print('##'+'-'*100)
-print('##','Character Set')
-print('##'+'-'*100)
+show_banner('Character Set')
 test_patterns('abbaaabbbbaaaaa',
         [('[ab]', "either 'a' or 'b'"),
          ('a[ab]+', "'a' followed by one or more 'a' or 'b'"),
          ('a[ab]+?', "'a' followed by one or more 'a' or 'b', not greedy"),
          ])
+
+test_patterns('This is some text -- with punctuation.',
+        [('[^-. ]+', "sequence without -, . or space"),
+         ])
+
+test_patterns('abbaabbba',
+        [
+            ('a.', "a followed by any one character"),
+            ('b.', "b followed by any one character"),
+            ('a.*b', "a followed by anything, ending in b"),
+            ('a.*?b', "a followed by anything, ending in b"),
+         ])
+
+show_banner('Escape Codes')
