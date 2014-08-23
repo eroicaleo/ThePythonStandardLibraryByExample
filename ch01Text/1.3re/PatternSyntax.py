@@ -59,3 +59,32 @@ test_patterns('abbaabbba',
          ])
 
 show_banner('Escape Codes')
+
+test_patterns('A prime #1 example!',
+        [
+            (r'\d+', "sequence of digits"),
+            (r'\D+', "sequence of non digits"),
+            (r'\s+', "sequence of whitespace"),
+            (r'\S+', "sequence of non whitespace"),
+            (r'\w+', "alphanumeric"),
+            (r'\W+', "non alphanumeric"),
+         ])
+
+test_patterns(r'\d+ \D+ \w+',
+        [
+            (r'\\.\+', "excape code"),
+         ])
+
+show_banner('Anchoring')
+
+test_patterns('This is some text -- with punctuation.',
+        [
+            (r'^\w+', "word at the start of string"),
+            (r'\A\w+', "word at the start of string"),
+            (r'\w+\S*\Z', "word at the end of string, skip punctuation"),
+            (r'\w+\S*$', "word at the end of string, skip punctuation"),
+            (r'\w*t\w*', "word containing t"),
+            (r'\bt\w+', "t at the start of word"),
+            (r'\w+t\b', "t at the start of word"),
+            (r'\Bt\B', "t, not start or end of word "),
+         ])
