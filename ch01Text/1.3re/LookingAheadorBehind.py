@@ -89,3 +89,46 @@ for candidate in candidates:
         print('No match')
 
 show_banner('negative look backward')
+address = re.compile(
+        '''
+        ^
+        # An address: username@domain.tld
+        [\w\d.+-]+      # username
+
+        # Ignore noreply addresses
+        (?<!noreply)
+
+        @
+        ([\w\d.]+\.)+   # domain name prefix
+        (com|org|edu)   # domain
+
+        $
+        ''', re.VERBOSE)
+
+candidates = [
+        'first.last@example.com',
+        'noreply@example.com',
+        ]
+
+for candidate in candidates:
+    print('Candidate:', candidate)
+    match = address.search(candidate)
+    if match:
+        print('EMAIL:', candidate[match.start():match.end()])
+    else:
+        print('No match')
+
+show_banner('look backward')
+twitter = re.compile(
+        '''
+        (?<=@)
+        # A twitter handle: @username
+        ([\w\d_]+)      # username
+        ''', re.VERBOSE)
+
+text = '''This text includes two Twitter handles.
+One for @ThePSF, and one for the author, @doughellmann.
+'''
+
+for match in twitter.findall(text):
+    print('Handle:', match)
